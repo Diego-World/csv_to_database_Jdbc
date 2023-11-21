@@ -1,0 +1,11 @@
+id_venda,data_venda,id_produto,produto,preco_produto,id_fornecedor,fornecedor,id_fabricante,fabricante
+1,2023-11-16 10:15:30,10,Barrigudinha 350ml,5.50,1,Ambev,1,Ambev
+2,2023-11-17 10:30:30,5,Vodka Balalaika 1L,12.0,1,Ambev,1,Ambev
+3,2023-11-18 11:15:30,7,EIGHT Maço,7.250,1,Ambev,1,Ambev
+4,2023-11-19 10:17:30,8,Whisky Chanceler,25.25,1,Ambev,1,Ambev
+5,2023-11-20 12:15:30,11,RedLabel Falsa 1L,65.0,1,Ambev,1,Ambev
+6,2023-11-21 14:15:30,12,RedLabel Original 1L,85.0,1,Ambev,1,Ambev
+7,2023-11-22 17:15:30,1,Whisky White Horse 1L,70.0,1,Ambev,1,Ambev
+8,2023-11-23 17:20:30,1,Whisky White Horse 1L,70.0,1,Ambev,1,Ambev
+9,2023-11-24 20:00:30,1,Whisky White Horse 1L,70.0,1,Ambev,1,Ambev
+10,2023-11-25 22:00:30,4,Corote 350ml,4.85,1,Ambev,1,Ambev
