@@ -18,14 +18,6 @@ import java.util.List;
 public class CSVParser {
     private static final String CAMINHO_ARQUIVO = "src/main/resources/vendas.csv";
 
-    public static List<String[]> readAllLines(Path filePath) throws Exception {
-        try (Reader reader = Files.newBufferedReader(filePath)) {
-            try (CSVReader csvReader = new CSVReader(reader)) {
-                return csvReader.readAll();
-            }
-        }
-    }
-
     public static List<PlanilhaVendas> parser() {
         try (CSVReader reader = new CSVReaderBuilder(new FileReader(CAMINHO_ARQUIVO)).withSkipLines(1).build()) {
             List<String[]> linhas = reader.readAll();
