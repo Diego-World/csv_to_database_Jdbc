@@ -2,14 +2,21 @@ package br.com.diegogouveia.service;
 
 import br.com.diegogouveia.Utils.CSVParser;
 import br.com.diegogouveia.config.DataBaseConfig;
+import br.com.diegogouveia.repository.PlanilhaVendasRepository;
 import br.com.diegogouveia.repository.PlanilhaVendasRespositoryImpl;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
 public class PlanilhaVendasService {
+
+    private final PlanilhaVendasRepository repository;
+    public PlanilhaVendasService(PlanilhaVendasRepository repository){
+        this.repository = repository;
+
+    }
     public void insertRegistroVenda() {
-        PlanilhaVendasRespositoryImpl repository = new PlanilhaVendasRespositoryImpl();
+
         Connection connection = null;
         try {
             Connection conncetion = DataBaseConfig.getConnection();
@@ -21,7 +28,9 @@ public class PlanilhaVendasService {
             System.out.println(e.getMessage());
         } finally {
             try {
-                if (connection != null && !connection.isClosed()) {
+
+
+                if (connection != null && !connection.isClosed()  ) {
                     connection.close();
                     System.out.println("Conexão fechada com sucesso");
                 }
@@ -32,7 +41,7 @@ public class PlanilhaVendasService {
     }
 
     public void criarTabela() {
-        PlanilhaVendasRespositoryImpl repository = new PlanilhaVendasRespositoryImpl();
+
         Connection connection = null;
         try {
             Connection conncetion = DataBaseConfig.getConnection();
