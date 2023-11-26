@@ -19,7 +19,9 @@ public class PlanilhaVendasService {
     public void insertRegistroVenda() {
         Connection connection = getConnecetion();
         try {
-            repository.inserirDados(connection, CSVParser.parser());
+            if (connection != null) {
+                repository.inserirDados(connection, CSVParser.parser());
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -30,7 +32,9 @@ public class PlanilhaVendasService {
     public void criarTabela() {
         Connection connection = getConnecetion();
         try {
-            repository.criarTabela(connection);
+            if (connection != null) {
+                repository.criarTabela(connection);
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -41,13 +45,14 @@ public class PlanilhaVendasService {
     public void limparTabela() {
         Connection connection = getConnecetion();
         try {
-            repository.apagarTodosDados(connection);
+            if (connection != null) {
+                repository.apagarTodosDados(connection);
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
             closeConnection(connection);
         }
-
     }
 
     private Connection getConnecetion() {
