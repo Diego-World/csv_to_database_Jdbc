@@ -11,78 +11,67 @@ import java.sql.SQLException;
 public class PlanilhaVendasService {
 
     private final PlanilhaVendasRepository repository;
-    public PlanilhaVendasService(PlanilhaVendasRepository repository){
+
+    public PlanilhaVendasService(PlanilhaVendasRepository repository) {
         this.repository = repository;
-
     }
-    public void insertRegistroVenda() {
 
-        Connection connection = null;
+    public void insertRegistroVenda() {
+        Connection connection = getConnecetion();
         try {
-            Connection conncetion = DataBaseConfig.getConnection();
-            if (conncetion != null && !conncetion.isClosed()) {
-                System.out.println("Conexão estabelecida com sucesso");
-            }
-            repository.inserirDados(conncetion, CSVParser.parser());
+            repository.inserirDados(connection, CSVParser.parser());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
-            try {
-
-
-                if (connection != null && !connection.isClosed()  ) {
-                    connection.close();
-                    System.out.println("Conexão fechada com sucesso");
-                }
-            } catch (SQLException e) {
-                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
-            }
+            closeConnection(connection);
         }
     }
 
     public void criarTabela() {
-
-        Connection connection = null;
+        Connection connection = getConnecetion();
         try {
-            Connection conncetion = DataBaseConfig.getConnection();
-            if (conncetion != null && !conncetion.isClosed()) {
-                System.out.println("Conexão estabelecida com sucesso");
-            }
-            repository.criarTabela(conncetion);
+            repository.criarTabela(connection);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
-            try {
-                if (connection != null && !connection.isClosed()) {
-                    connection.close();
-                    System.out.println("Conexão fechada com sucesso");
-                }
-            } catch (SQLException e) {
-                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
-            }
+            closeConnection(connection);
         }
     }
 
     public void limparTabela() {
-        PlanilhaVendasRespositoryImpl repository = new PlanilhaVendasRespositoryImpl();
-        Connection connection = null;
+        Connection connection = getConnecetion();
         try {
-            Connection conncetion = DataBaseConfig.getConnection();
-            if (conncetion != null && !conncetion.isClosed()) {
-                System.out.println("Conexão estabelecida com sucesso");
-            }
-            repository.apagarTodosDados(conncetion);
+            repository.apagarTodosDados(connection);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
-            try {
-                if (connection != null && !connection.isClosed()) {
-                    connection.close();
-                    System.out.println("Conexão fechada com sucesso");
-                }
-            } catch (SQLException e) {
-                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
+            closeConnection(connection);
+        }
+
+    }
+
+    private Connection getConnecetion() {
+
+        Connection connection = null;
+        try {
+            connection = DataBaseConfig.getConnection();
+            if (connection != null && !connection.isClosed()) {
+                System.out.println("Conexão estabelecida com sucesso");
             }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return connection;
+    }
+
+    private void closeConnection(Connection connection) {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+                System.out.println("Conexão fechada com sucesso");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao fechar a conexão: " + e.getMessage());
         }
 
     }

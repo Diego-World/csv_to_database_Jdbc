@@ -1,5 +1,6 @@
 package br.com.diegogouveia.repository;
 
+import br.com.diegogouveia.config.DataBaseConfig;
 import br.com.diegogouveia.model.PlanilhaVendas;
 
 import java.sql.Connection;

@@ -21,10 +21,7 @@ public class CSVParser {
     public static List<PlanilhaVendas> parser() {
         try (CSVReader reader = new CSVReaderBuilder(new FileReader(CAMINHO_ARQUIVO)).withSkipLines(1).build()) {
             List<String[]> linhas = reader.readAll();
-            List<PlanilhaVendas> vendasList = mapearParaObjetos(linhas);
-            return vendasList;
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            return mapearParaObjetos(linhas);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
